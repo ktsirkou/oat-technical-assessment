@@ -131,4 +131,36 @@ class UserControllerTest extends WebTestCase
 
         $this->assertEquals(2, count($responseData));
     }
+
+    /**
+     * @covers \kstirkou\OAT\Controller\UserController::getUsers
+     * @covers \kstirkou\OAT\Service\UserService::getUsers
+     */
+    public function testGetAllWithInvalidRegexLimitParam()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', 'v1/users?limit=test');
+        $response = $client->getResponse();
+        $this->assertEquals(400, $response->getStatusCode());
+
+        $responseData = json_decode($response->getContent(), true);
+        $this->assertEquals("Parameter \"limit\" of value \"test\" violated a constraint \"Parameter 'limit' value, does not match requirements '\\d+'\"", $responseData['message']);
+    }
+
+    /**
+     * @covers \kstirkou\OAT\Controller\UserController::getUsers
+     * @covers \kstirkou\OAT\Service\UserService::getUsers
+     */
+    public function testGetAllWithInvalidRegexNameParam()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', 'v1/users?name=test!!');
+        $response = $client->getResponse();
+        $this->assertEquals(400, $response->getStatusCode());
+
+        $responseData = json_decode($response->getContent(), true);
+        $this->assertEquals("Parameter \"name\" of value \"test!!\" violated a constraint \"Parameter 'name' value, does not match requirements '[a-zA-z0-9]+'\"", $responseData['message']);
+    }
 }
