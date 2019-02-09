@@ -6,7 +6,6 @@ use kstirkou\OAT\Entity\User;
 use kstirkou\OAT\Entity\UserCollection;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Class UserCollectionNormalizer
@@ -15,13 +14,6 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  */
 class UserCollectionNormalizer implements NormalizerInterface, DenormalizerInterface
 {
-    private $normalizer;
-
-    public function __construct(ObjectNormalizer $normalizer)
-    {
-        $this->normalizer = $normalizer;
-    }
-
     /**
      * @inheritdoc
      */
