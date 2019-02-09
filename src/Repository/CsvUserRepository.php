@@ -24,7 +24,7 @@ class CsvUserRepository extends AbstractUserRepository
         $offset      = ($offset <=0) ? 0 : $offset;
         if ($offset >= $usersCount)
         {
-            throw new InvalidArgumentException('offset provided is bigger than total number of users', 400);
+            throw new InvalidArgumentException('offset provided is bigger than total number of users');
         }
 
         $returnUsers = array_slice($allUsers, $offset, $limit);
