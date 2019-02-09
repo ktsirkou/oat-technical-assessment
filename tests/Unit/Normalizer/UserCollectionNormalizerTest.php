@@ -24,6 +24,11 @@ class UserCollectionNormalizerTest extends TestCase
        parent::setUp();
    }
 
+    /**
+     * @covers \kstirkou\OAT\Normalizer\UserCollectionNormalizer::normalize
+     * @covers \kstirkou\OAT\Entity\User::__construct
+     * @covers \kstirkou\OAT\Entity\UserCollection::setUsers
+     */
    public function testSuccessNormalization()
    {
        $user = new User(
@@ -56,6 +61,9 @@ class UserCollectionNormalizerTest extends TestCase
        $this->assertEquals('street number 23', $normalizedUsers[0]['address']);
    }
 
+    /**
+     * @covers \kstirkou\OAT\Normalizer\UserCollectionNormalizer::denormalize
+     */
    public function testSuccessDenormalization()
    {
        $userData = <<<EOF
