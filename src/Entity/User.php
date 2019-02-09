@@ -2,17 +2,24 @@
 
 namespace kstirkou\OAT\Entity;
 
+use JsonSerializable;
+
 /**
  * Class User
  *
  * @package kstisrkou\OAT\Entity
  */
-class User {
+class User implements  JsonSerializable {
 
     /**
      * @var string
      */
     private $login;
+
+    /**
+     * @var string
+     */
+    private $password;
 
     /**
      * @var string
@@ -49,8 +56,22 @@ class User {
      */
     private $address;
 
+    /**
+     * User constructor.
+     *
+     * @param string $login
+     * @param string $password
+     * @param string $title
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
+     * @param string $gender
+     * @param string $pictures
+     * @param string $address
+     */
     public function __construct(
         $login,
+        $password,
         $title,
         $firstName,
         $lastName,
@@ -60,8 +81,9 @@ class User {
         $address
     )
     {
-        $this->login = $login;
-        $this->title = $title;
+        $this->login     = $login;
+        $this->title     = $title;
+        $this->password  = $password;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->gender    = $gender;
@@ -103,6 +125,24 @@ class User {
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return User
+     */
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
         return $this;
     }
 
@@ -214,4 +254,24 @@ class User {
         return $this;
     }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'login'     => $this->getLogin(),
+            'title'     => $this->getTitle(),
+            'firstname' => $this->getFirstName(),
+            'lastname'  => $this->getLastName(),
+            'gender'    => $this->getGender(),
+            'email'     => $this->getEmail(),
+            'picture'   => $this->getPictures(),
+            'address'   => $this->getAddress(),
+        ];
+    }
 }
