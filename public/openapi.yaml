@@ -103,7 +103,6 @@ components:
     User:
       required:
         - login
-        - name
         - title
         - firstname
         - lastname
