@@ -1,0 +1,152 @@
+openapi: "3.0.0"
+info:
+  description: "This is a simple API for the purpose of completing the candidate technical assessment for OAT."
+  version: "1.0.0"
+  title: "OAT assessment"
+  contact:
+    email: "ktsirkou@gmail.com"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+servers:
+  - url: 'http://kostas-oat.io/v1/'
+tags:
+  - name: "users"
+    description: "Operations about users"
+paths:
+  /users:
+    get:
+      summary: List all users
+      operationId: listUsers
+      tags:
+        - users
+      parameters:
+        - name: limit
+          in: query
+          description: How many users to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: Replace the offest from which point to start return the users list
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: name
+          in: query
+          description: String by which the return lists of users will be filtered
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A pagenated array of users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users/{userId}:
+    get:
+      summary: Get information for a specific user
+      operationId: listUserInfo
+      tags:
+        - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the user to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response, success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    User:
+      required:
+        - login
+        - name
+        - title
+        - firstname
+        - lastname
+        - gender
+        - email
+        - address
+        - picture
+      properties:
+        login:
+          type: string
+          example: "kostas12"
+        title:
+          type: string
+          example: "Mister"
+        firstname:
+          type: string
+          example: "Jonh"
+        lastname:
+          type: string
+          example: "Doe"
+        gender:
+          type: string
+          example: "Male"
+        email:
+          type: string
+          example: "jonh.doe@example.com"
+        address:
+          type: string
+          example: "23 no street"
+        picture:
+          type: string
+          example: "https://CDN/kostas12.png"
+    Users:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
