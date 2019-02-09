@@ -16,7 +16,7 @@ class CsvUserRepository extends AbstractUserRepository
      */
     public function findAllBy(int $limit, int $offset, string $name = null): array
     {
-        // TODO: Implement findAllBy() method.
+        return $this->users->getAllUsers();
     }
 
     /**
@@ -24,7 +24,7 @@ class CsvUserRepository extends AbstractUserRepository
      */
     public function findBy(string $loginId): ?User
     {
-        // TODO: Implement getUserBy() method.
+        return $this->users->getById($loginId);
     }
 
 }

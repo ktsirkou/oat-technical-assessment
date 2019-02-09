@@ -22,7 +22,13 @@ abstract class AbstractUserRepository implements UserRepositoryInterface
      */
     protected $serializer;
 
-    public function __construct(SerializerInterface $serializer, $resourceType)
+    /**
+     * AbstractUserRepository constructor.
+     *
+     * @param SerializerInterface $serializer
+     * @param string $resourceType
+     */
+    public function __construct(SerializerInterface $serializer, string $resourceType)
     {
         $this->serializer = $serializer;
 
