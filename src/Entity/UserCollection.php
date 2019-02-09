@@ -20,17 +20,6 @@ class UserCollection implements IteratorAggregate, Countable, JsonSerializable
     protected $users = [];
 
     /**
-     * @param User $user
-     *
-     * @return UserCollection
-     */
-    public function add(User $user): self
-    {
-        $this->users[$user->getLogin()] = $user;
-        return $this;
-    }
-
-    /**
      * @param array $users
      *
      * @return UserCollection

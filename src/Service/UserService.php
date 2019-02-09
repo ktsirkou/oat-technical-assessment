@@ -3,7 +3,6 @@
 namespace kstirkou\OAT\Service;
 
 use kstirkou\OAT\Entity\User;
-use kstirkou\OAT\Entity\UserCollection;
 use kstirkou\OAT\Repository\AbstractUserRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

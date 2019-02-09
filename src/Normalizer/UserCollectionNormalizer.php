@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Class UserCollectionNormalizer
+ *
  * @package kstirkou\OAT\Normalizer
  */
 class UserCollectionNormalizer implements NormalizerInterface, DenormalizerInterface

@@ -59,18 +59,9 @@ class UserController extends AbstractFOSRestController
      *
      * @return View
      */
-    public function getUsers($limit = null, $offset = null , $name = null): View {
-
-//        $user      = new User("kostas", "kostas","Mr", "kostas", "Tsirk", "koastas@yaho.com", "Fmale" , "asca0", "adder");
-//        $user2    = new User("kostas", "kostas","Mr", "kostas", "Tsirk", "koastas@yaho.com", "Fmale" , "asca0", "adder");
-//        if ($limit < 10 ) {
-//            $userList = [$user2];
-//            return View::create($userList, Response::HTTP_OK);
-//        }
-//
-//        $userList = [$user, $user2];
-        //TODO get real data
-        $userList = $this->userService->getUsers($limit, $offset, $name);
+    public function getUsers($limit = null, $offset = null , $name = null): View
+    {;
+        $userList = $this->userService->getUsers((int)$limit, (int)$offset, $name);
 
         return View::create($userList, Response::HTTP_OK);
     }

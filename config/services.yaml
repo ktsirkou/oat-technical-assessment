@@ -34,14 +34,14 @@ services:
 
     # by updating the following the CsvUserRepository and resourceType csv we load data from different source format
     #the rest of the project remains the same.
-#    kstirkou.default.user_repository:
-#        class: kstirkou\OAT\Repository\JsonUserRepository
-#        public: false
-#        arguments:
-#            $resourceType: 'json'
-
     kstirkou.default.user_repository:
-        class: kstirkou\OAT\Repository\CsvUserRepository
+        class: kstirkou\OAT\Repository\JsonUserRepository
         public: false
         arguments:
-            $resourceType: 'csv'
+            $resourceType: 'json'
+
+#    kstirkou.default.user_repository:
+#        class: kstirkou\OAT\Repository\CsvUserRepository
+#        public: false
+#        arguments:
+#            $resourceType: 'csv'
