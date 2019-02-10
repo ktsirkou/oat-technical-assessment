@@ -12,3 +12,8 @@
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
