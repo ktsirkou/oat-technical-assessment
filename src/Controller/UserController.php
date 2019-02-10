@@ -34,7 +34,7 @@ class UserController extends AbstractFOSRestController
     /**
      * Return a user
      *
-     * @Get("/users/{userId}")
+     * @Get("/v1/users/{userId}")
      *
      * @param string $userId
      * @return View
@@ -51,7 +51,7 @@ class UserController extends AbstractFOSRestController
      * @QueryParam(name="limit", description="limit of users returned", requirements="\d+", default=100, nullable=true, strict=true)
      * @QueryParam(name="offset", description="starting index on gettin the users", requirements="\d+", default=0, nullable=true, strict=true)
      * @QueryParam(name="name", description="filter on firstname laster", requirements="[a-zA-z0-9]+", nullable=true, strict=true)
-     * @Get("/users")
+     * @Get("/v1/users")
      *
      * @param int    $limit
      * @param int    $offset

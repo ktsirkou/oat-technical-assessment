@@ -9,7 +9,7 @@ info:
     name: "MIT"
     url: "https://opensource.org/licenses/MIT"
 servers:
-  - url: 'http://kostas-oat.io/v1/'
+  - url: 'http://oat-tech-assesment.us-east-2.elasticbeanstalk.com/v1/'
 tags:
   - name: "users"
     description: "Operations about users"
@@ -80,6 +80,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: Resource not found.
           content:
