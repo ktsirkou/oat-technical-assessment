@@ -4,7 +4,7 @@
 
 The project is technical assessment for oat.
 
-#How to setup 
+# How to setup 
 
 ## Prerequisites 
 
@@ -22,7 +22,7 @@ The project is technical assessment for oat.
 5. (optional) you can setup on your `hosts` file the `127.0.0.1 tao.docker` so the api will be
 also available on this url.
 
-#Changing data source
+# Changing data source
 
 The sources are located under `resources` path. For now we have
 the json and csv data sources. Default data source is the json file.
@@ -49,7 +49,7 @@ To switch sources we only need to update related configuration option found on
     ...
 ````
 
-#Next steps and Improvements.
+# Next steps and Improvements.
 
 1. Support SSL
 2. Better validation on query params
@@ -57,7 +57,7 @@ To switch sources we only need to update related configuration option found on
 4. Proper logging, (using [sentry](https://sentry.io/welcome))
 
 
-#Check the api online (only http)
+# Check the api online (only http)
 - [Get users](http://oat-tech-assesment.us-east-2.elasticbeanstalk.com/v1/users)  
 - [Get single User](http://oat-tech-assesment.us-east-2.elasticbeanstalk.com/v1/users/clarksusan)
 
