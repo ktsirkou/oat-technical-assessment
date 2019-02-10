@@ -3,22 +3,21 @@
 namespace kstirkou\OAT\Service;
 
 use kstirkou\OAT\Entity\User;
-use kstirkou\OAT\Repository\AbstractUserRepository;
+use kstirkou\OAT\Repository\UserRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserService
 {
     /**
-     * @var AbstractUserRepository
+     * @var UserRepository
      */
-
     protected $userRepository;
     /**
      * UserService constructor.
      *
-     * @param AbstractUserRepository $userRepository
+     * @param UserRepository $userRepository
      */
-    public function __construct(AbstractUserRepository $userRepository){
+    public function __construct(UserRepository $userRepository){
         $this->userRepository = $userRepository;
     }
     /**

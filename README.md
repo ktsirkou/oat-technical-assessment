@@ -32,22 +32,24 @@ To switch sources we only need to update related configuration option found on
 ````
     ...
     
-    # by updating the following the CsvUserRepository and resourceType csv we load data from different source format
+    # by updating the following the parameteres on we can load different data sources from configurable
+    # root resources path and filename and resource type. For our exanple changing json to csv is enough for loading
+    # the csv resource.
     #the rest of the project remains the same.
-    kstirkou.default.user_repository:
-        class: kstirkou\OAT\Repository\JsonUserRepository
-        public: false
-        arguments:
-            $resourceType: 'json'
-
-#    kstirkou.default.user_repository:
-#        class: kstirkou\OAT\Repository\CsvUserRepository
-#        public: false
-#        arguments:
-#            $resourceType: 'csv'
+parameters:
+    app.resource_dir: '%env(REOUSRCE_SOURCE)%'
+    app.resource_file_name: 'testtakers'
+    app.resource_type: 'json'
 
     ...
 ````
+
+# Run tests 
+`php bin/phpunit`
+
+You can check with the current default configuration tests are passing.
+If you check the resource type to csv, tests will fail because we are
+using separate resources root path that that's include the csv file.
 
 # Next steps and Improvements.
 

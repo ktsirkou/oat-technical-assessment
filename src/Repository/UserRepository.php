@@ -3,15 +3,56 @@
 namespace kstirkou\OAT\Repository;
 
 use kstirkou\OAT\Entity\User;
+use kstirkou\OAT\Entity\UserCollection;
 use kstirkou\OAT\Exception\InvalidArgumentException;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Class JsonUserRepository
+ * Class UserRepository
  *
  * @package kstirkou\OAT\Repository
  */
-class CsvUserRepository extends AbstractUserRepository
+class UserRepository implements UserRepositoryInterface
 {
+    /**
+     * @var UserCollection
+     */
+    protected $users;
+
+    /**
+     * @var SerializerInterface
+     */
+    protected $serializer;
+
+    /**
+     * UserRepository constructor.
+     *
+     * @param SerializerInterface $serializer
+     * @param string $resourceDir
+     * @param string $resourceFileName
+     * @param string $resourceType
+     */
+    public function __construct(SerializerInterface $serializer, string $resourceDir,  string $resourceFileName, string $resourceType)
+    {
+        $this->serializer = $serializer;
+
+        $this->loadData($resourceDir, $resourceFileName, $resourceType);
+    }
+
+    /**
+     * Load data from the resources
+     *
+     * @param string $resourceDir
+     * @param string $resourceFileName
+     * @param string $resourceType
+     */
+    public function loadData(string $resourceDir,  string $resourceFileName, string $resourceType)
+    {
+
+        $data        = file_get_contents(__DIR__. $resourceDir . $resourceFileName . '.' . $resourceType);
+        $this->users = $this->serializer->deserialize($data, UserCollection::class, $resourceType);
+    }
+
     /**
      * @inheritdoc
      *
