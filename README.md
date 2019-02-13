@@ -16,7 +16,7 @@ The project is technical assessment for oat.
 
 1. Clone the repository
 2. Execute composer `compoer install`
-3. Run command `docker-composer up -d` from the root directory of the  project. This make take several minutes.
+3. Run command `docker-compose up -d` from the root directory of the  project. This make take several minutes.
 4. The api should be accessible on localhost:81
 
 5. (optional) you can setup on your `hosts` file the `127.0.0.1 tao.docker` so the api will be
